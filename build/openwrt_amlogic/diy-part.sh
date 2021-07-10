@@ -5,13 +5,19 @@
 # 不要一下就拉取别人一个插件包N多插件的，多了没用，增加编译错误，自己需要的才好
 
 
-sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.2.2'" $ZZZ                      # IPv4 地址(openwrt后台地址)
-sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
-sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.2.2'" $ZZZ                     # IPv4 网关
-sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.2.255'" $ZZZ                 # IPv4 广播
-sed -i "/uci commit network/i\uci set network.lan.dns='114.114.114.114'" $ZZZ                     # DNS(多个DNS要用空格分开)
-sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
+cat >$NETIP <<-EOF
+uci set network.lan.ipaddr='192.168.2.2'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
+uci set network.lan.gateway='192.168.2.1'                                   # IPv4 网关
+uci set network.lan.broadcast='192.168.2.255'                               # IPv4 广播
+uci set network.lan.dns='114.114.114.114 223.5.5.5'                         # DNS(多个DNS要用空格分开)
+uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
+uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
+
+uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
+uci commit dhcp                                                             # 不要删除跟注释,除非‘关闭DHCP功能’删除或注释掉了
+EOF
+
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
