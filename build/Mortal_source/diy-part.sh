@@ -3,6 +3,9 @@
 # DIY扩展二合一了，在此处可以增加插件
 # 自行拉取插件之前请SSH连接进入固件配置里面确认过没有你要的插件再单独拉取你需要的插件
 # 不要一下就拉取别人一个插件包N多插件的，多了没用，增加编译错误，自己需要的才好
+# 修改IP项的EOF于EOF之间请不要插入其他扩展代码，可以删除里面原本的代码
+
+
 
 
 cat >$NETIP <<-EOF
@@ -16,14 +19,14 @@ uci commit network                                                          # �
 
 uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
 uci commit dhcp                                                             # 不要删除跟注释,除非‘关闭DHCP功能’删除或注释掉了
+
+uci set system.@system[0].hostname='OpenWrt-123'                            # 修改主机名称为OpenWrt-123
 EOF
 
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile           # 选择argon为默认主题
 
 sed -i "s/OpenWrt /${Author} Compiled in $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字${Author}默认为你的github账号
-
-sed -i "/uci commit system/i\uci set system.@system[0].hostname='OpenWrt-123'" $ZZZ               # 修改主机名称为OpenWrt-123
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
 
