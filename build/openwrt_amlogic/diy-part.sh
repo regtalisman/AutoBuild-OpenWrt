@@ -16,10 +16,8 @@ uci set network.lan.broadcast='192.168.2.255'                               # IP
 uci set network.lan.dns='114.114.114.114 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
-
 uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
 uci commit dhcp                                                             # 不要删除跟注释,除非‘关闭DHCP功能’删除或注释掉了
-
 uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
 EOF
 
