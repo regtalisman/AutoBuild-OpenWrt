@@ -47,6 +47,7 @@
 - 12、`保存编译配置`，编译固件之前打开‘`SSH连接服器配置固件`’跟‘`上传【.config】配置文件在github空间`’。</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;编译的时候SSH连接服务器修改好机型、插件跟其他应用。</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;编译成功后会有固件跟.config配置文件的，下载.config配置文件后，解压得到一个【config.txt】文件。</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;双击打开，把里面的内容都复制，然后覆盖对应机型.config里面原来的内容，这样就会保存你的配置了。</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;下次编译在不修改配置的情况下就不需要再次打开SSH了，那就可以使用定时编译功能，或者手机启动编译。</br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;本地提取.config配置文件覆盖进去也可以，《[本地提取教程](https://github.com/danshui-git/shuoming/blob/master/yijianconfig.md)》。
 #
 - 13、
+《[增加编译机型方法](https://github.com/danshui-git/shuoming/blob/master/jlck.md)》
 《[定时触发编译说明](https://github.com/danshui-git/shuoming/blob/master/%E5%AE%9A%E6%97%B6%E7%BC%96%E8%AF%91%E8%AF%B4%E6%98%8E.md)》
 《[修改跟删除](https://github.com/danshui-git/shuoming/blob/master/%E5%88%A0%E9%99%A4%E5%92%8C%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.md)》
 《[本地提取.config](https://github.com/danshui-git/shuoming/blob/master/yijianconfig.md)》
