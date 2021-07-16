@@ -120,7 +120,6 @@ jobs:
     - name: 加载源,补丁和自定义设置
       run: |
         echo "Compile_Date=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-        echo "date=$(date +'%m.%d')" >> $GITHUB_ENV
         cp -Rf `find ./ -maxdepth 1 -type d ! -path './openwrt' ! -path './'` openwrt
         mv -f "${Home}"/build/common/*.sh "${PATH1}"
         source "${PATH1}/common.sh" && Diy_settings
@@ -195,6 +194,7 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
         echo "date=$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
+        echo "date1=$(date +'%m.%d')" >> $GITHUB_ENV
 
     - name: 上传bin文件夹(固件+ipk)在 github actions
       uses: actions/upload-artifact@v2
@@ -220,7 +220,7 @@ jobs:
         find -name "*vmlinuz*" | xargs -i rm -rf {}
         find -name "*Image*" | xargs -i rm -rf {}
         rm -rf packages
-        rename -v "s/^openwrt/${{ env.CODE }}-${{ env.date }}/" *
+        rename -v "s/^openwrt/${{ env.date1 }}-${{ env.CODE }}/" *
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "BOT=TRUE" >> $GITHUB_ENV
         echo "::set-output name=status::success"
